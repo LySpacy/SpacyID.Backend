@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="SpacyID.API/SpacyID.API.csproj" />
   <Project Path="SpacyID.Application/SpacyID.Application.csproj" />
+  <Project Path="SpacyID.Domain/SpacyID.Domain.csproj" Id="54bc4325-348d-4dfe-81fe-07bfe1198ac1" />
   <Project Path="SpacyID.Infrastructure/SpacyID.Infrastructure.csproj" />
 </Solution>
