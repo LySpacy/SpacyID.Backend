@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="SpacyID.API/SpacyID.API.csproj" />
+  <Project Path="SpacyID.Application/SpacyID.Application.csproj" />
+  <Project Path="SpacyID.Infrastructure/SpacyID.Infrastructure.csproj" />
+</Solution>
