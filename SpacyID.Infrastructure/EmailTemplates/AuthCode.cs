@@ -41,9 +41,7 @@ internal static class EmailTemplate
                     <table align='center' border='0' cellpadding='0' cellspacing='0' style='margin: 0 auto 24px auto;'>
                         <tr>
                             <td align='center' style='background-color: #1f293d; border: 1px solid #374151; border-radius: 12px; padding: 16px 32px;'>
-                                <span class='auth-code' style='color: #38bdf8; font-family: ""Courier New"", Courier, monospace; font-size: 32px; font-weight: bold; letter-spacing: 6px; display: inline-block;'>
-                                    {code}
-                                </span>
+                                <span class='auth-code' style='color: #38bdf8; font-family: ""Courier New"", Courier, monospace; font-size: 32px; font-weight: bold; letter-spacing: 6px; display: inline-block;'>{code}</span>
                             </td>
                         </tr>
                     </table>

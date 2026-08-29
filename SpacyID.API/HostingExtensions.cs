@@ -28,15 +28,18 @@ internal static class HostingExtensions
         // Подключаем Swagger UI
         app.UseCustomSwagger();
 
+        app.MapGet("/", () =>
+         Results.Redirect("/swagger"))
+         .ExcludeFromDescription();
+
         //app.UseMiddleware<GlobalErrorHandlingMiddleware>();
         // Маршрутизация контроллеров
         app.MapControllers();
 
         //Миграции бд
-       // app.ApplyMigrations();
+        // app.ApplyMigrations();
 
-        app.MapGet("/", () =>
-         Results.Redirect("/swagger"));
+        app.MapGet("/ping", () => Results.Ok("pong"));
 
         return app;
     }
