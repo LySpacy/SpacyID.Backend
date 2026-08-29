@@ -16,7 +16,7 @@ public class AuthService : IAuthService
     public async Task SendAuthCodeToEmail(string email)
     {
         var randomNumber = randomizer.Next(1000000);
-        var code = $"{randomNumber:S-#######}";
+        var code = $"{randomNumber:000000}";
 
         await _emailSender.SendCode(email, code);
     }
