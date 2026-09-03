@@ -39,8 +39,6 @@ internal static class HostingExtensions
         //Миграции бд
         // app.ApplyMigrations();
 
-        app.MapGet("/ping", () => Results.Ok("pong"));
-
         return app;
     }
 }

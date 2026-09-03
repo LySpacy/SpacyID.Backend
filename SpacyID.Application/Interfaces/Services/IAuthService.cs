@@ -2,6 +2,6 @@
 
 public interface IAuthService
 {
-    Task SendAuthCodeToEmail(string email);
-
+    Task<string> SendAuthCode(string email);
+    Task VerifyAuthCode(string login, string code);
 }

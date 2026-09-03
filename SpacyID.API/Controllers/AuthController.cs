@@ -5,7 +5,7 @@ using SpacyID.Application.Interfaces.Services;
 namespace SpacyID.API.Controllers;
 
 [ApiController]
-[Route("api/auth")]
+[Route("api/v1/auth")]
 public class AuthController : Controller
 {
 
@@ -17,11 +17,20 @@ public class AuthController : Controller
     }
 
     [HttpGet("login")]
-    public async Task<IActionResult> Login([FromQuery] string email)
+    public async Task<IActionResult> Login([FromQuery] string login)
     {
 
-        await _authleService.SendAuthCodeToEmail(email);
+        var responce = await _authleService.SendAuthCode(login);
 
-        return Ok($"Код отправлен на почтовый адресс {email}.");
+        return Ok(responce);
+    }
+
+    [HttpPost("code")]
+    public async Task<IActionResult> VerifyCode([FromQuery] string login, string code)
+    {
+
+        await _authleService.VerifyAuthCode(login, code);
+
+        return Ok();
     }
 }
