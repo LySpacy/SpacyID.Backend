@@ -28,9 +28,13 @@ public class AuthController : Controller
     [HttpPost("code")]
     public async Task<IActionResult> VerifyCode([FromQuery] string login, string code)
     {
+        var resultVerify = _authleService.VerifyAuthCode(login, code);
 
-        await _authleService.VerifyAuthCode(login, code);
+        if (!resultVerify)
+        {
+            return BadRequest("Неверный код.");
+        }
 
-        return Ok();
+        return Ok("Вы успешно вошли!");
     }
 }

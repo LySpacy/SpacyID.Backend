@@ -10,6 +10,8 @@ public class AuthService : IAuthService
     private readonly IEmailSender _emailSender;
     private readonly Random randomizer = new Random();
 
+    private Dictionary<string, string> _recipientsCodes = new Dictionary<string, string>();
+
     public AuthService(IEmailSender emailSender)
     {
         _emailSender = emailSender;
@@ -52,9 +54,20 @@ public class AuthService : IAuthService
         
     }
 
-    public Task VerifyAuthCode(string login, string code)
-    {
-        throw new NotImplementedException();
+    //public Task<bool> VerifyAuthCode(string login, string code)
+    //{
+    //    throw new AuthException($"Пользователь {login} не запрашивал код.");
+    //}
+    public bool VerifyAuthCode(string login, string code)
+    {  
+        if (!_recipientsCodes.ContainsKey(login))
+        {
+            throw new AuthException($"Пользователь {login} не запрашивал код.");
+        }
+
+        var codeHash = Hasher.GetHash(code);
+
+        return _recipientsCodes[login] == codeHash;
     }
 
 
@@ -62,11 +75,15 @@ public class AuthService : IAuthService
     {
         await _emailSender.SendCode(email, code);
 
+        FixedCode(email, code);
+
         return $"Код отправлен на почтовый адресс {email}.";
     }
 
     private async Task<string> SendPhone(string phoneNumber, string code)
     {
+        //await _phoneSender.SendCode(phoneNumber, code);
+
         return $"Код отправлен на номер +{phoneNumber}.";
     }
     private static RecipientType GetRecipientType(string recipient)
@@ -82,5 +99,12 @@ public class AuthService : IAuthService
         }
 
         return RecipientType.Default;
+    }
+
+    private void FixedCode(string recipient, string code)
+    {
+        var codeHash = Hasher.GetHash(code);
+
+       _recipientsCodes.Add(recipient, codeHash);
     }
 }

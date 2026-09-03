@@ -3,5 +3,6 @@
 public interface IAuthService
 {
     Task<string> SendAuthCode(string email);
-    Task VerifyAuthCode(string login, string code);
+    //Task<bool> VerifyAuthCode(string login, string code);
+    bool VerifyAuthCode(string login, string code);
 }

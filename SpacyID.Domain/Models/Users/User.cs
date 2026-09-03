@@ -9,6 +9,10 @@ namespace SpacyID.Domain.Models.Users;
 public sealed class User : BaseModel
 {
     /// <summary>
+    /// Логин авторизации
+    /// </summary>
+    public string Login {  get; set; }
+    /// <summary>
     /// Данные пользователя
     /// </summary>
     public UserData Data { get; set; }
