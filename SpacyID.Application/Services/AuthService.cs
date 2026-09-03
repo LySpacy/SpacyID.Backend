@@ -1,4 +1,5 @@
 ﻿using SpacyID.Application.Common;
+using SpacyID.Application.Common.Exceptions;
 using SpacyID.Application.Interfaces.Senders;
 using SpacyID.Application.Interfaces.Services;
 
@@ -19,14 +20,14 @@ public class AuthService : IAuthService
 
         if (string.IsNullOrEmpty(recipient))
         {
-            throw new ArgumentNullException("Получатель не может быть пустым");
+            throw new AuthException("Получатель не может быть пустым");
         }
 
         var recipientType = GetRecipientType(recipient);
 
         if (recipientType == RecipientType.Default)
         {
-            throw new ArgumentNullException("Неизвестный тип получателя.");
+            throw new AuthException("Неизвестный тип получателя.");
         }
 
         var randomNumber = randomizer.Next(1000000);
@@ -36,7 +37,7 @@ public class AuthService : IAuthService
         {    
             case RecipientType.Phone:
                 {
-                    throw new ArgumentException($"Отправка кода по номеру телефона недоступна");
+                    throw new AuthException($"Отправка кода по номеру телефона недоступна");
 
                     //return await SendPhone(recipient, code);
                 }

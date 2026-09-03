@@ -32,7 +32,7 @@ internal static class HostingExtensions
          Results.Redirect("/swagger"))
          .ExcludeFromDescription();
 
-        //app.UseMiddleware<GlobalErrorHandlingMiddleware>();
+        app.UseMiddleware<GlobalErrorHandlingMiddleware>();
         // Маршрутизация контроллеров
         app.MapControllers();
 
